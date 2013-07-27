@@ -1,0 +1,38 @@
+<!--(2) Make a simple html page to manage Todos. It should have an input field. When the user enters text in the input field, show that input in the page. 
+When an existing item is clicked, it should disappear from the page.-->
+
+<doctype html>
+	<html>
+		<head>
+			<title>Manage ToDo's</title>
+
+			<style type="text/css">
+				#itemList{
+					cursor:pointer;
+				}
+			</style>
+		</head>
+		<body>
+			<input id="theText" type="text" /> <input type="submit" id="theButton" value="Add"/>
+			<ul id="itemList"></ul>
+
+			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+			<script type="text/javascript">
+				/*The rest*/
+				$(function(){
+					var num = 0;
+					$("#theButton").click(function() {
+					  $("#itemList").append("<li id=' "+ num +" '>" + $("#theText").val() + "</li>");
+					  num++;
+					  $("#theText").val("");
+					});
+
+					$("#itemList").click(function(){
+						console.log(event.target.id);
+						var el = event.target;
+						el.remove();
+					});
+				});
+			</script>
+		</body>
+	</html>
